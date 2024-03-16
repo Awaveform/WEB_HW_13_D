@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "web-hw-13-d"
+version = "0.1.0"
+description = ""
+authors = ["anton <aillarionov@b2bsoft.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.3"
+psycopg2 = "^2.9.9"
+image = "^1.5.33"
+python-dotenv = "^1.0.1"
+django-environ = "^0.11.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,54 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8"/>-->
+<!--    <title>Organizer</title>-->
+<!--    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/>-->
+<!--</head>-->
+<!--<body>-->
+<!--<main class="container">-->
+<!--    <h1>Main page</h1>-->
+<!--</main>-->
+<!--</body>-->
+<!--</html>-->
+
+{% extends "quote/base.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Organizer</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/>
+</head>
+<body>
+<main class="container">
+{#    <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">#}
+{#        <ul>#}
+{#            <li><a href="{% url 'quote:quote' %}" role="button">Add quote</a></li>#}
+{#            <li><a href="{% url 'quote:tag' %}" role="button">Add Tag</a></li>#}
+{#        </ul>#}
+{#    </nav>#}
+
+    {% for quote in quotes %}
+    <ul>
+        <li>
+        {#            {% if request.user.is_staff or is_user_owner and not quote.done %}#}
+            {% if not quote.done %}
+            <p>{{ quote.description }} by <a href="{% url 'quote:author_detail' quote.author.id %}" class="outline"> {{ quote.author.fullname }} </a></p>
+                {% if user.is_authenticated and quote.user_id == user.id %}
+                    <a href="{% url 'quote:set_done' quote.id %}" role="button"> Mark Done </a>
+                    <a href="{% url 'quote:delete' quote.id %}" role="button" class="contrast"> Delete quote </a>
+                {% endif %}
+            {% else %}
+            <a href="{% url 'quote:detail' quote.id %}" role="button" class="secondary"><s>{{ quote.name }}</s></a>
+            {% endif %}
+        </li>
+    </ul>
+    {% endfor %}
+</main>
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "quote/base.html" %} {% load extract_tags %} {% block content %}
+
+<h1>{{quote.fullname}}</h1>
+<p>Born date: <b>{{quote.born_date}}</b></p>
+<p>Born location: <b>{{quote.born_location}}</b></p>
+<p>Description: <b>{{quote.author_description}}</b></p>
+<p>Time of creation: <kbd>{{quote.author_created}}</kbd></p>
+{% endblock %}
